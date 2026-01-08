@@ -25,7 +25,13 @@ public class ActiveWeapon : MonoBehaviour
     }
     public void switchweapon(WeaponsSO weaponsSO)
     {
-        Debug.Log("Weapon switched to " + weaponsSO.name);
+        if(currentWeapon) 
+        {
+            Destroy(currentWeapon.gameObject);
+        }
+        RaycastScript newWeapon = Instantiate(weaponsSO.weaponprefab,transform).GetComponent<RaycastScript>();
+        currentWeapon = newWeapon;
+        this.WeaponsSO = weaponsSO;
     }
 
     void handlefire()
